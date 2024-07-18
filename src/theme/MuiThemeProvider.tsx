@@ -2,8 +2,7 @@ import React from "react";
 import ThemeProvider, {
   ThemeProviderProps,
 } from "@mui/material/styles/ThemeProvider";
-import { theme } from "./theme";
-import { createTheme } from "@mui/material";
+import { getTheme } from "./theme";
 
 export interface MuiThemeProviderProps extends Partial<ThemeProviderProps> {}
 
@@ -22,31 +21,31 @@ const MuiThemeProvider: React.FC<MuiThemeProviderProps> = ({ children }) => {
     localStorage.getItem("theme") || "light"
   );
 
-  const [newTheme, setNewTheme] = React.useState(theme);
-
   React.useEffect(() => {
-    if (mode === "dark")
-      setNewTheme(createTheme({ palette: { mode: "dark", ...newTheme } }));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    let body = document.querySelector("body");
+    if (body) {
+      mode === "dark"
+        ? (body.style.backgroundColor = "black")
+        : (body.style.backgroundColor = "#fafcff");
+    }
+  }, [mode]);
 
-  const handleThemeToggle = (theme: string) => {
-    if (theme === "light") {
+  const handleThemeToggle = (mode: string) => {
+    if (mode === "light") {
       localStorage.setItem("theme", "dark");
       setMode("dark");
-      setNewTheme(createTheme({ palette: { mode: "dark", ...newTheme } }));
     } else {
       localStorage.setItem("theme", "light");
       setMode("light");
-      setNewTheme(createTheme({ palette: { mode: "light", ...newTheme } }));
     }
   };
 
   return (
-    <ThemeContext.Provider
-      value={{ mode: mode, handleThemeToggle: handleThemeToggle }}
-    >
-      <ThemeProvider theme={newTheme}>{children}</ThemeProvider>;
+    <ThemeContext.Provider value={{ mode, handleThemeToggle }}>
+      <ThemeProvider theme={getTheme(mode as "light" | "dark")}>
+        {children}
+      </ThemeProvider>
+      ;
     </ThemeContext.Provider>
   );
 };

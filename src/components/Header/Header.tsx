@@ -5,8 +5,8 @@ import MainLogo from "../Svg/MainLogo";
 
 const headerLinksStyle = {
   fontSize: 15,
-  fontWeight: "bold",
-  color: '#953838'
+  fontWeight: 800,
+  color: "inherit",
 };
 
 const Header = () => {
@@ -18,13 +18,18 @@ const Header = () => {
         alignItems="center"
         px={3}
         py={1}
-        border={1}
-        bgcolor={"background.default"}
+        boxShadow='black 0px 0px 5px 0px'
+        bgcolor="background.default"
       >
         <Link to="./">
           <MainLogo />
         </Link>
-        <Stack direction="row" spacing={3} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={3}
+          alignItems="center"
+          color="text.primary"
+        >
           <Link to="./" style={headerLinksStyle}>
             HOME
           </Link>
