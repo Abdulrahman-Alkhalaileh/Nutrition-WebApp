@@ -16,3 +16,23 @@ code {
 a {
   text-decoration: none;
 }
+
+.cardContent {
+    /* autoprefixer: ignore next */
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardTitle {
+  /* autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
