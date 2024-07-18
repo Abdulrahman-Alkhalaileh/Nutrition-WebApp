@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/Header/Header";
 import ErrorPage from "./pages/ErrorPage";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import MuiThemeProvider from "./theme/MuiThemeProvider";
 
 const router = createBrowserRouter([
