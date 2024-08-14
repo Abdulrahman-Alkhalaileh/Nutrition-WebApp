@@ -1,7 +1,7 @@
 "use client";
-import { Autocomplete, TextField } from "@mui/material";
-import axios from "axios";
 import React from "react";
+import { Autocomplete, TextField } from "@mui/material";
+import { recipeAutoComplete } from "helpers/recipes";
 
 export interface RecipesAutoCompleteProps {}
 
@@ -18,14 +18,9 @@ const RecipesAutoComplete: React.FC<RecipesAutoCompleteProps> = ({
 
   const handleChange = async (e: any) => {
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_MAIN_DOMAIN}/recipes/autocomplete?number=5&query=${e.target.value}&apiKey=${process.env.REACT_APP_API_KEY}`
-      );
-      setOptions(res.data);
-      console.log(options);
-    } catch (error) {
-      console.log(error);
-    }
+      const res = await recipeAutoComplete(e.target.value);
+      setOptions(res);
+    } catch (error) {}
   };
 
   return (
@@ -42,7 +37,7 @@ const RecipesAutoComplete: React.FC<RecipesAutoCompleteProps> = ({
         getOptionKey={(options) => options.id}
         getOptionLabel={(options) => options.title}
         fullWidth
-        sx={{ bgcolor: "background.default", maxWidth: 600, borderRadius: 3 }}
+        sx={{ bgcolor: "background.paper", maxWidth: 600, borderRadius: 3 }}
         onClose={() => setOptions([])}
       />
     </>

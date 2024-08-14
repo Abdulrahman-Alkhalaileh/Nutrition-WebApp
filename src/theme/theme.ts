@@ -5,11 +5,14 @@ export const getTheme = (mode: "dark" | "light") => {
     palette: {
       mode: mode,
       primary: {
-        main: "#f3e5f5",
+        main: mode === "dark" ? "#330000" : "#660000",
       },
       secondary: {
         main: "#edf2ff",
       },
+      background:{
+        default:  mode === "dark" ? '#262525' :'#e0d4d3',
+      }
     },
     typography: {
       fontFamily: "inherit",

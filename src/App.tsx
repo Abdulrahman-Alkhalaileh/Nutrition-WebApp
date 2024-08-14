@@ -3,6 +3,9 @@ import Header from "./components/Header/Header";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home/Home";
 import MuiThemeProvider from "./theme/MuiThemeProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -29,7 +32,9 @@ function App() {
   return (
     <div className="App">
       <MuiThemeProvider>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
       </MuiThemeProvider>
     </div>
   );

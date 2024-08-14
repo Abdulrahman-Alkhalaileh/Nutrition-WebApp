@@ -2,6 +2,7 @@ import { Box, Stack } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 import ThemeSwitch from "./ThemeSwitch";
 import MainLogo from "../Svg/MainLogo";
+// import SideNav from "./SideNav";
 
 const headerLinksStyle = {
   fontSize: 15,
@@ -42,6 +43,7 @@ const Header = () => {
           <ThemeSwitch />
         </Stack>
       </Box>
+      {/* <SideNav /> */}
       <Outlet />
     </>
   );
